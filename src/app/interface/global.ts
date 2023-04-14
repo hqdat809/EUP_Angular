@@ -1,0 +1,7 @@
+enum MODAL_TYPE {
+  ADD_MODAL = 'ADD_MODAL',
+  EDIT_MODAL = 'EDIT_MODAL',
+  DELETE_MODAL = 'DELETE_MODAL',
+}
+
+export { MODAL_TYPE };

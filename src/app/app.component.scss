@@ -1,0 +1,16 @@
+.firstApp {
+  &__nav {
+  }
+
+  & .nav-item.active {
+    background-color: rgb(57, 56, 56);
+    border-radius: 10px;
+    a {
+      color: white;
+    }
+  }
+
+  &__navOutlet {
+    padding: 0 100px;
+  }
+}

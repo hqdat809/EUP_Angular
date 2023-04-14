@@ -1,0 +1,17 @@
+<div class="StudentDetail">
+  <nav class="StudentDetail__nav">
+    <div class="StudentDetail__nav-header"><h2>Danh sách học sinh</h2></div>
+    <ng-template ngFor [ngForOf]="students" let-student>
+      <div
+        class="StudentDetail__nav-item"
+        (click)="navigateToStudentDetail(student.id)"
+        [class.active]="activeStudentId === student.id"
+      >
+        {{ student.id }}. {{ student.name }}
+      </div>
+    </ng-template>
+  </nav>
+  <div class="StudentDetail__content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

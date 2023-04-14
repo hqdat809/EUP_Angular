@@ -1,0 +1,61 @@
+.dataExam {
+  &__gender {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 25px;
+    button {
+      height: 25px;
+      width: 100px;
+      border: 1px solid #f0f0f0cc;
+      border-radius: 5px;
+      background-color: rgb(161, 157, 157);
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+
+  &__rowSelected {
+    background-color: rgb(66, 185, 244) !important;
+  }
+
+  &__rowNotSelected {
+    background-color: rgb(161, 157, 157);
+  }
+
+  &__genderSelectedBtn {
+    background-color: rgb(66, 185, 244) !important;
+  }
+
+  &__table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+
+      .actionBtn {
+        border: 1px solid #cccc;
+        width: 70px;
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+
+    &-actionColumn {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      width: 180px;
+    }
+
+    &-actionColumnTr {
+      width: 180px;
+    }
+  }
+}

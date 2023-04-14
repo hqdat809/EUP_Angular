@@ -1,0 +1,70 @@
+<div class="dataExam__wrapper">
+  <h2>Danh sách học sinh</h2>
+  <div class="dataExam__gender">
+    <span class="">Giới tính:</span>
+    <button
+      [class.dataExam__genderSelectedBtn]="selectedGender == 0"
+      (click)="selectedGender = 0"
+    >
+      Nam
+    </button>
+    <button
+      [class.dataExam__genderSelectedBtn]="selectedGender == 1"
+      (click)="selectedGender = 1"
+    >
+      Nữ
+    </button>
+  </div>
+  <table class="dataExam__table">
+    <tr>
+      <th>STT</th>
+      <th>Họ tên</th>
+      <th>Quên quán</th>
+      <th>Giới tính</th>
+      <th class="dataExam__table-actionColumnTr"></th>
+    </tr>
+    <ng-template ngFor [ngForOf]="students" let-student let-idx="index">
+      <tr
+        [class.dataExam__rowSelected]="student.genderByIndex === selectedGender"
+        [class.dataExam__rowNotSelected]="
+          student.genderByIndex !== selectedGender && selectedGender !== null
+        "
+      >
+        <td>{{ idx + 1 }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.country }}</td>
+        <td>{{ student.gender }}</td>
+        <td class="dataExam__table-actionColumn">
+          <button
+            class="actionBtn"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            (click)="onClickEditBtn(student, idx)"
+          >
+            Edit
+          </button>
+          {{ "       " }}
+          <button class="actionBtn" (click)="onClickDeleteBtn(student, idx)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </ng-template>
+  </table>
+  <br />
+  <button type="button" class="btn btn-primary" (click)="onClickAddBtn()">
+    Thêm học sinh
+  </button>
+  <ng-template #content let-modal>
+    <app-add-modal
+      [handleSubmit]="onAdd"
+      [openModal]="openModal"
+      [modalType]="actionType"
+      [closeModal]="closeModal"
+      [selectedStudentIndex]="selectedStudentIndex"
+      [editStudentDetails]="editStudentDetails"
+      (handleDeleteStudent)="onDelete($event)"
+      (handleEditStudent)="onEdit($event)"
+    ></app-add-modal>
+  </ng-template>
+</div>

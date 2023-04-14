@@ -1,0 +1,129 @@
+<div class="modal-header">
+  <ng-template [ngIf]="modalType === 'ADD_MODAL'">
+    <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm học sinh</h1>
+  </ng-template>
+  <ng-template [ngIf]="modalType === 'EDIT_MODAL'">
+    <h1 class="modal-title fs-5" id="exampleModalLabel">
+      Sửa thông tin học sinh
+    </h1>
+  </ng-template>
+  <ng-template [ngIf]="modalType === 'DELETE_MODAL'">
+    <h1 class="modal-title fs-5" id="exampleModalLabel">
+      Xóa thông tin học sinh
+    </h1>
+  </ng-template>
+  <button type="button" class="btn-close" (click)="closeModal()"></button>
+</div>
+<div class="modal-body">
+  <ng-template [ngIf]="modalType === 'ADD_MODAL' || modalType === 'EDIT_MODAL'">
+    <form
+      class="addMemberForm"
+      [formGroup]="myForm"
+      (ngSubmit)="onSubmit(myForm)"
+    >
+      <div class="form-group addMemberForm__field">
+        <label for="name">Họ tên: </label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          name="name"
+          formControlName="name"
+        />
+        <div
+          class="addMemberForm__field-error"
+          *ngIf="
+            myForm.controls['name'].touched && myForm.controls['name'].errors
+          "
+        >
+          <div *ngIf="myForm.controls['name']?.errors?.['required']">
+            Name is required
+          </div>
+        </div>
+        <div
+          class="addMemberForm__field-error"
+          *ngIf="myForm.controls['name']?.errors?.['nameExists'] && isSubmitted"
+        >
+          Name is exists
+        </div>
+      </div>
+      <div class="form-group addMemberForm__field">
+        <label for="country">Quê quán: </label>
+        <input
+          type="text"
+          class="form-control"
+          id="country"
+          name="country"
+          formControlName="country"
+        />
+        <div
+          class="addMemberForm__field-error"
+          *ngIf="
+            myForm.controls['country'].touched &&
+            myForm.controls['country'].errors
+          "
+        >
+          <div *ngIf="myForm.controls['country'].errors?.['required']">
+            Quê quán không được bỏ trống
+          </div>
+        </div>
+      </div>
+      <div class="form-group addMemberForm__field">
+        <label for="genderByIndex">Giới tính: </label>
+        <select
+          id="genderByIndex"
+          name="genderByIndex"
+          formControlName="genderByIndex"
+        >
+          <option value="">-- Giới tính --</option>
+          <option value="0">Nam</option>
+          <option value="1">Nữ</option>
+        </select>
+        <div
+          class="addMemberForm__field-error"
+          *ngIf="
+            myForm.controls['genderByIndex'].invalid &&
+            myForm.controls['genderByIndex'].touched
+          "
+        >
+          <div class="error-message">Vui lòng chọn giới tính</div>
+        </div>
+      </div>
+      <ng-template [ngIf]="modalType === 'ADD_MODAL'">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="myForm.controls['name'].errors?.['required'] || myForm.controls['country'].errors?.['required'] || myForm.controls['genderByIndex'].errors?.['required']"
+        >
+          Thêm
+        </button>
+      </ng-template>
+      <ng-template [ngIf]="modalType === 'EDIT_MODAL'">
+        <button
+          type="button"
+          data-bs-dismiss="modal"
+          class="btn btn-primary"
+          (click)="handleEdit(selectedStudentIndex)"
+          [disabled]="myForm.controls['name'].errors?.['required'] || myForm.controls['country'].errors?.['required'] || myForm.controls['genderByIndex'].errors?.['required']"
+        >
+          Sửa
+        </button>
+      </ng-template>
+    </form>
+  </ng-template>
+  <ng-template [ngIf]="modalType === 'DELETE_MODAL'">
+    <div>
+      <button
+        type="submit"
+        class="btn btn-secondary"
+        (click)="handleDelete(selectedStudentIndex)"
+      >
+        Ok
+      </button>
+      {{ "      " }}
+      <button type="submit" class="btn btn-primary" (click)="closeModal()">
+        Hủy
+      </button>
+    </div>
+  </ng-template>
+</div>
