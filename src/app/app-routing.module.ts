@@ -1,14 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
-import { StudentPageComponent } from './page/student-page/student-page.component';
-import { StudentDetailPageComponent } from './page/student-detail-page/student-detail-page.component';
-import { TodoPageComponent } from './page/todo-page/todo-page.component';
-import { StudentDetailComponent } from './page/student-detail-page/student-detail/student-detail.component';
-import { PageNotFoundComponent } from './page/page-not-found/page-not-found.component';
-import { StudentNotFoundComponent } from './page/student-not-found/student-not-found.component';
-import { AppComponent } from './app.component';
+import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './page/home-page/home-page.component';
+import { PageNotFoundComponent } from './page/page-not-found/page-not-found.component';
+import { StudentDetailPageComponent } from './page/student-detail-page/student-detail-page.component';
 
 export const routes: Routes = [
   {
@@ -17,18 +11,24 @@ export const routes: Routes = [
   },
   {
     path: 'task1',
-    component: StudentPageComponent,
+    loadChildren: () =>
+      import('./page/student-page/student-page.module').then(
+        (m) => m.StudentPageModule
+      ),
   },
   {
     path: 'task2',
     component: StudentDetailPageComponent,
-    children: [
-      { path: '', component: StudentDetailComponent },
-      { path: 'not-found', component: StudentNotFoundComponent },
-      { path: ':studentId', component: StudentDetailComponent },
-    ],
+    loadChildren: () =>
+      import('./page/student-detail-page/student-detail-page.module').then(
+        (m) => m.StudentPageModule
+      ),
   },
-  { path: 'task3', component: TodoPageComponent },
+  {
+    path: 'task3',
+    loadChildren: () =>
+      import('./page/todo-page/todo-page.module').then((m) => m.TodoPageModule),
+  },
   { path: '**', component: PageNotFoundComponent },
 ];
 

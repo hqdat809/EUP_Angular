@@ -43,8 +43,10 @@ export class TodoPageTableComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onClickCheckBox(todoId: string, state: boolean) {
-    this.store.dispatch(setStateTodo({ id: todoId, stateTodo: state }));
+  onClickCheckBox(todoId: string, event: any) {
+    this.store.dispatch(
+      setStateTodo({ id: todoId, stateTodo: event.target.checked })
+    );
   }
 
   onClickEditCancel() {

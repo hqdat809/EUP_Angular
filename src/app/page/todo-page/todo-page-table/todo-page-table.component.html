@@ -14,10 +14,11 @@
         <td>{{ todo.name }}</td>
         <td>{{ todo.time }}</td>
         <td>
-          <mat-checkbox
+          <input
+            type="checkbox"
             [checked]="todo.state"
-            (change)="onClickCheckBox(todo.id, $event.checked)"
-          ></mat-checkbox>
+            (change)="onClickCheckBox(todo.id, $event)"
+          />
         </td>
         <td><button (click)="onClickEditBtn(todo.id)">Sửa</button></td>
         <td>

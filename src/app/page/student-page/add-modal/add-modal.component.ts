@@ -1,14 +1,14 @@
 import {
   Component,
+  ElementRef,
   EventEmitter,
   Input,
   OnChanges,
+  OnDestroy,
   OnInit,
   Output,
   SimpleChanges,
   ViewChild,
-  ElementRef,
-  OnDestroy,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -17,11 +17,10 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IStudent } from '../student-page.component';
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { NgbModalBackdrop } from '@ng-bootstrap/ng-bootstrap/modal/modal-backdrop';
 interface TFormValue {
   name: string;
   email: string;
