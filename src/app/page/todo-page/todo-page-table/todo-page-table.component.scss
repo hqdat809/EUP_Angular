@@ -1,0 +1,30 @@
+.todoPage {
+  &__table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: center;
+      padding: 8px;
+
+      .actionBtn {
+        border: 1px solid #cccc;
+        width: 70px;
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+    tr {
+      border: 1px solid #ccc;
+    }
+    td,
+    th {
+      border-left: none;
+      border-right: none;
+    }
+  }
+}

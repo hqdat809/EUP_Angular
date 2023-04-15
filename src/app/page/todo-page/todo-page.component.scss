@@ -1,0 +1,18 @@
+.todoPage {
+  &__title {
+    text-align: center;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-bottom: 25px;
+
+    &-filter,
+    &-add {
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+    }
+  }
+}

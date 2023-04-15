@@ -8,8 +8,13 @@ import { StudentDetailComponent } from './page/student-detail-page/student-detai
 import { PageNotFoundComponent } from './page/page-not-found/page-not-found.component';
 import { StudentNotFoundComponent } from './page/student-not-found/student-not-found.component';
 import { AppComponent } from './app.component';
+import { HomePageComponent } from './page/home-page/home-page.component';
 
-const routes: Routes = [
+export const routes: Routes = [
+  {
+    path: '',
+    component: HomePageComponent,
+  },
   {
     path: 'task1',
     component: StudentPageComponent,

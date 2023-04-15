@@ -19,16 +19,16 @@
     <form
       class="addMemberForm"
       [formGroup]="myForm"
-      (ngSubmit)="onSubmit(myForm)"
+      (submit)="onSubmit(myForm)"
     >
       <div class="form-group addMemberForm__field">
         <label for="name">Họ tên: </label>
         <input
           type="text"
           class="form-control"
+          formControlName="name"
           id="name"
           name="name"
-          formControlName="name"
         />
         <div
           class="addMemberForm__field-error"

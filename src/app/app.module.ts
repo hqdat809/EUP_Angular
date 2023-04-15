@@ -8,7 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routes } from './app-routing.module';
 import { TodoPageComponent } from './page/todo-page/todo-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StudentPageComponent } from './page/student-page/student-page.component';
@@ -17,7 +17,11 @@ import { PageNotFoundComponent } from './page/page-not-found/page-not-found.comp
 import { StudentDetailPageComponent } from './page/student-detail-page/student-detail-page.component';
 import { StudentDetailComponent } from './page/student-detail-page/student-detail/student-detail.component';
 import { StudentNotFoundComponent } from './page/student-not-found/student-not-found.component';
-
+import { TodoPageTableComponent } from './page/todo-page/todo-page-table/todo-page-table.component';
+import { TodoPageModalComponent } from './page/todo-page/todo-page-modal/todo-page-modal.component';
+import { StoreModule } from '@ngrx/store';
+import { todoReducer } from './store/reducers/todo.reducer';
+import { HomePageComponent } from './page/home-page/home-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +32,9 @@ import { StudentNotFoundComponent } from './page/student-not-found/student-not-f
     StudentDetailComponent,
     PageNotFoundComponent,
     StudentNotFoundComponent,
+    TodoPageTableComponent,
+    TodoPageModalComponent,
+    HomePageComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +48,7 @@ import { StudentNotFoundComponent } from './page/student-not-found/student-not-f
     MatButtonModule,
     AppRoutingModule,
     NgbModule,
+    StoreModule.forRoot({ todoState: todoReducer }),
   ],
   providers: [],
   bootstrap: [AppComponent, AddModalComponent, StudentPageComponent],

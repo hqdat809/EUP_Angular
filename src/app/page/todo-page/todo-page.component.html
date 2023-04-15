@@ -1,1 +1,23 @@
-<p>todo-page works!</p>
+<div class="todoPage">
+  <h1 class="todoPage__title">Thời Gian Biểu</h1>
+  <div class="todoPage__actions">
+    <button class="todoPage__actions-add" (click)="onClickAddBtn()">
+      Thêm
+    </button>
+    <select class="todoPage__actions-filter" (change)="onChangeFilter($event)">
+      <option value="ALL">Tất cả</option>
+      <option value="DONE">Đã hoàn thành</option>
+      <option value="DOING">Chưa hoàn thành</option>
+    </select>
+  </div>
+  <app-todo-page-table
+    [openModalDelete]="openModalDelete"
+  ></app-todo-page-table>
+  <ng-template #todoModal let-modal>
+    <app-todo-page-modal
+      [closeModal]="closeModal"
+      [modalType]="modalType"
+      (handleDeleteTodo)="onDelete()"
+    ></app-todo-page-modal>
+  </ng-template>
+</div>

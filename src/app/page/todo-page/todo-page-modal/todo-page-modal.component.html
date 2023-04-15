@@ -1,0 +1,86 @@
+<div class="modal-header">
+  <ng-template [ngIf]="modalType === 'ADD_MODAL'">
+    <h1 class="modal-title fs-5">Thêm công việc</h1>
+  </ng-template>
+  <ng-template [ngIf]="modalType === 'DELETE_MODAL'">
+    <h1 class="modal-title fs-5">Xóa công việc</h1>
+  </ng-template>
+  <button type="button" class="btn-close"></button>
+</div>
+<ng-template [ngIf]="modalType === 'ADD_MODAL'">
+  <div class="modal-body">
+    <div class="todoModal__content">
+      <form [formGroup]="addTodoForm" (submit)="onSubmit()">
+        <div class="todoModal__field">
+          <div class="todoModal__field-label">Tên công việc:</div>
+          <div class="todoModal__field-name">
+            <input
+              type="text"
+              class="todoModal__field-name-input"
+              class="form-control"
+              formControlName="name"
+            />
+            <div
+              class="todoModal__field-error"
+              *ngIf="
+                addTodoForm.controls['name'].touched &&
+                addTodoForm.controls['name'].errors
+              "
+            >
+              <div *ngIf="addTodoForm.controls['name']?.errors?.['required']">
+                Tên công việc không được bỏ trống
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="todoModal__field">
+          <div class="todoModal__field-label">Thời gian:</div>
+          <div class="todoModal__field-time">
+            <input
+              type="time"
+              class="form-control todoModal__field-time-input"
+              formControlName="time"
+            />
+            <div
+              class="todoModal__field-error"
+              *ngIf="
+                addTodoForm.controls['time'].touched &&
+                addTodoForm.controls['time'].errors
+              "
+            >
+              <div *ngIf="addTodoForm.controls['time']?.errors?.['required']">
+                Thời gian không được bỏ trống
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="todoModal__field">
+          <div class="todoModal__field-label">Trạng thái:</div>
+          <div class="todoModal__field-state">
+            <input
+              type="checkbox"
+              class="todoModal__field-state-input"
+              formControlName="state"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>
+<div class="modal-footer">
+  <ng-template [ngIf]="modalType === 'ADD_MODAL'">
+    <button
+      class="btn btn-primary"
+      type="submit"
+      (click)="onSubmit()"
+      [disabled]="!addTodoForm.valid"
+    >
+      Thêm
+    </button>
+  </ng-template>
+  <ng-template [ngIf]="modalType === 'DELETE_MODAL'">
+    <button class="btn btn-secondary">Hủy</button>
+    <button class="btn btn-primary" (click)="handleDelete()">Xóa</button>
+  </ng-template>
+</div>

@@ -131,7 +131,7 @@ export class AddModalComponent implements OnInit, OnChanges, OnDestroy {
   checkName(name: string): Observable<boolean> {
     // Observable do what? Why can't return direct {[key: string]: string}?
     return new Observable<boolean>((observer) => {
-      const exists = JSON.parse(localStorage.getItem('students') || '').find(
+      const exists = JSON.parse(localStorage.getItem('students') || '[]').find(
         (student: any) => student.name === name
       );
       observer.next(exists);
@@ -141,12 +141,13 @@ export class AddModalComponent implements OnInit, OnChanges, OnDestroy {
 
   onSubmit(formControl: any) {
     this.isSubmitted = true;
-
+    console.log(this.myForm.valid);
     if (this.myForm.valid) {
       this.handleSubmit(formControl.value);
       this.myForm.reset();
       this.closeModal();
       this.isSubmitted = false;
+      console.log('submit');
     }
   }
 }

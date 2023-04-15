@@ -1,0 +1,53 @@
+<table class="todoPage__table">
+  <tr>
+    <th>STT</th>
+    <th>Tên CV</th>
+    <th>Thời gian</th>
+    <th>Trang thái</th>
+    <th>Sửa</th>
+    <th>Xóa</th>
+  </tr>
+  <ng-template ngFor [ngForOf]="todoList" let-todo let-idx="index">
+    <ng-template [ngIf]="todo.id !== editTodoId" [ngIfElse]="editTodoRow">
+      <tr>
+        <td>{{ idx + 1 }}</td>
+        <td>{{ todo.name }}</td>
+        <td>{{ todo.time }}</td>
+        <td>
+          <mat-checkbox
+            [checked]="todo.state"
+            (change)="onClickCheckBox(todo.id, $event.checked)"
+          ></mat-checkbox>
+        </td>
+        <td><button (click)="onClickEditBtn(todo.id)">Sửa</button></td>
+        <td>
+          <button (click)="openModalDelete(todo.id)">Xóa</button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #editTodoRow>
+      <tr>
+        <td>{{ idx + 1 }}</td>
+        <td>
+          <input
+            class="todoPage__table-editName"
+            type="text"
+            [(ngModel)]="editTodoInfo.name"
+          />
+        </td>
+        <td>
+          <input
+            class="todoPage__table-editTime"
+            type="time"
+            [(ngModel)]="editTodoInfo.time"
+          />
+        </td>
+        <td></td>
+        <td><button (click)="onClickEditCancel()">Hủy</button></td>
+        <td>
+          <button (click)="onClickEditDone()">Xong</button>
+        </td>
+      </tr>
+    </ng-template>
+  </ng-template>
+</table>

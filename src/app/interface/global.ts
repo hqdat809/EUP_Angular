@@ -4,4 +4,11 @@ enum MODAL_TYPE {
   DELETE_MODAL = 'DELETE_MODAL',
 }
 
-export { MODAL_TYPE };
+type TTodo = {
+  id: string;
+  name: string;
+  time: any;
+  state: boolean;
+};
+
+export { MODAL_TYPE, TTodo };

@@ -12,9 +12,7 @@ export class AppComponent implements OnInit {
   currentRoute: string = '';
   currentUrl = '';
 
-  constructor(private router: Router) {
-    console.log(this.router.url);
-  }
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.router.events.subscribe((event) => {

@@ -1,0 +1,62 @@
+.todoModal {
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  &__field {
+    display: flex;
+    height: 80px;
+    align-items: center;
+
+    &-label {
+      width: 150px;
+      display: flex;
+      align-items: center;
+    }
+
+    &-error {
+      color: rgb(251, 78, 78);
+    }
+
+    &-state {
+      display: flex;
+      &-input {
+        height: 20px;
+        width: 20px;
+      }
+    }
+
+    &-name {
+      display: flex;
+      flex-direction: column;
+
+      &-input {
+        font-size: 18px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        padding: 8px 16px;
+        color: rgb(102, 102, 102);
+
+        &:focus {
+          border: 1px solid red !important;
+        }
+      }
+    }
+
+    &-time-input {
+      max-width: 170px;
+      border-radius: 5px;
+      border: none;
+      font-size: 18px;
+      padding: 8px 16px;
+    }
+
+    &-name,
+    &-time,
+    &-state {
+      flex: 3;
+    }
+  }
+}
